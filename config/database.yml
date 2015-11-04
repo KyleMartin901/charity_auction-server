@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  username: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: charity_auction-server_development
+  host: localhost
+
+test:
+  <<: *default
+  database: charity_auction-server_test
+  host: localhost
+
+production:
+  url: <%= ENV['DATABASE_URL'] %>

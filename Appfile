@@ -1,0 +1,5 @@
+# Application Charity Auction Server
+application {
+  Name: "charity_auction-server"
+  Type: "rails"
+}
