@@ -12,5 +12,8 @@
 !/log/.keep
 /tmp
 
-# Iginore otto dev environment
+# Ignore otto dev environment
 /.otto
+
+# Ignore spec examples
+/spec/exaples.txt
