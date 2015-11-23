@@ -12,7 +12,11 @@ RSpec.describe Auction do
 
     it { is_expected.to have_attribute :donation_window_ends_at }
   end
-  
+
+  describe "relationships" do
+    it { is_expected.to have_many :auction_admins }
+  end
+
   describe "validations" do
     it "ends_at is after starts_at" do
       subject.ends_at = DateTime.new(2015,10,1,0,0)

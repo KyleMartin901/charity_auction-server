@@ -10,4 +10,8 @@ RSpec.describe User do
       subject = FactoryGirl.create(:user)
     end
   end
+
+  describe "relationships" do
+    it { is_expected.to have_many :auction_admins }
+  end
 end
