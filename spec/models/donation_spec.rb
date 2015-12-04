@@ -5,8 +5,8 @@ RSpec.describe Donation do
     it { is_expected.to have_attribute :quantity }
     it { is_expected.to have_attribute :redemption_window_starts_at }
     it { is_expected.to have_attribute :redemption_window_ends_at }
-    it { is_expected.to have_attribute :estimated_value }
-    it { is_expected.to have_attribute :minimum_bid }
+    it { is_expected.to have_attribute :estimated_value_amount }
+    it { is_expected.to have_attribute :minimum_bid_amount }
     it { is_expected.to have_attribute :display_description }
     it { is_expected.to have_attribute :admin_follow_up_needed }
     it { is_expected.to have_attribute :fulfillment_type }
@@ -25,10 +25,10 @@ RSpec.describe Donation do
 
     it { should validate_numericality_of(:quantity).is_greater_than(0) }
     it { should validate_numericality_of(:quantity).allow_nil }
-    it { should validate_numericality_of(:estimated_value).is_greater_than_or_equal_to(0) }
-    it { should validate_numericality_of(:estimated_value).allow_nil }
-    it { should validate_numericality_of(:minimum_bid).is_greater_than(0) }
-    it { should validate_numericality_of(:minimum_bid).allow_nil }
+    it { should validate_numericality_of(:estimated_value_amount).is_greater_than_or_equal_to(0) }
+    it { should validate_numericality_of(:estimated_value_amount).allow_nil }
+    it { should validate_numericality_of(:minimum_bid_amount).is_greater_than(0) }
+    it { should validate_numericality_of(:minimum_bid_amount).allow_nil }
 
     it { should define_enum_for(:fulfillment_type).with([:item, :certificate]) }
 
