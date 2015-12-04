@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204160539) do
+ActiveRecord::Schema.define(version: 20151204174916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(version: 20151204160539) do
     t.datetime "donation_window_ends_at"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "organisation_id",         null: false
   end
+
+  add_index "auctions", ["organisation_id"], name: "index_auctions_on_organisation_id", using: :btree
 
   create_table "bid_types", force: :cascade do |t|
     t.string   "name",       null: false
@@ -75,6 +78,22 @@ ActiveRecord::Schema.define(version: 20151204160539) do
   add_index "donations", ["bid_type_id"], name: "index_donations_on_bid_type_id", using: :btree
   add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "user_id",         null: false
+    t.integer  "organisation_id", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "memberships", ["organisation_id"], name: "index_memberships_on_organisation_id", using: :btree
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
+
+  create_table "organisations", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name",                null: false
     t.string   "mobile_phone_number", null: false
@@ -89,7 +108,10 @@ ActiveRecord::Schema.define(version: 20151204160539) do
 
   add_foreign_key "auction_admins", "auctions"
   add_foreign_key "auction_admins", "users"
+  add_foreign_key "auctions", "organisations"
   add_foreign_key "donations", "auctions"
   add_foreign_key "donations", "bid_types"
   add_foreign_key "donations", "users", column: "donor_id"
+  add_foreign_key "memberships", "organisations"
+  add_foreign_key "memberships", "users"
 end

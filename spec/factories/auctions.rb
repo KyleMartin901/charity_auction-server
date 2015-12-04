@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :auction do
+    association :organisation, strategy: :build
     starts_at "2015-12-22 18:00:00"
     ends_at "2015-12-22 20:00:00"
     time_zone_id "Australia/Sydney"
