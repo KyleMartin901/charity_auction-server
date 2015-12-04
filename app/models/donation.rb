@@ -3,8 +3,6 @@ class Donation < ActiveRecord::Base
   belongs_to :bid_type
   belongs_to :donor, class_name: "User"
 
-  has_many :bids
-
   enum fulfillment_type: [ :item, :certificate ]
 
   validate :_redemption_window_ends_at_greater_than_starts_at
